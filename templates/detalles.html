@@ -1,0 +1,26 @@
+{% extends "Layout.html" %}
+
+{% block container %}
+<div class="py-32 relative overflow-auto sm:rounded-lg">
+	<div class="flex justify-center">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Nombre Completo: </strong>{{ alum.nombre }} {{ alum.apaterno }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Correo Electrónico: </strong>{{ alum.email }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Fecha de Registro: </strong>{{ alum.created_date }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+</div>
+{% endblock %}

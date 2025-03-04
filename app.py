@@ -17,9 +17,26 @@ csrf = CSRFProtect(app)
 
 
 @app.route("/")
-@app.route("/index")
+@app.route("/index", methods = ["GET", "POST"])
 def index():
-	return render_template("index.html")
+    
+    create_form = forms.UserForm2(request.form)
+    alumno = Alumnos.query.all() 
+    return render_template("index.html", form = create_form, alumnos = alumno)
+
+
+@app.route("/detalles", methods=["POST", "GET"])
+def detalles():
+    if request.method == 'GET':
+        id = request.args.get('id')
+        alum1 = db.session.query(Alumnos).filter_by(id=id).first()
+        if alum1:
+            return render_template('detalles.html', alum=alum1)
+        else:
+            flash("Alumno no encontrado", "error")
+            return redirect(url_for('index'))
+
+    
 
 if __name__ == '__main__':
     csrf.init_app(app)
